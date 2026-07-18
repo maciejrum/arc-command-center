@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97.5%;
+    --foreground: 222 36% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 36% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 36% 12%;
+    --primary: 239 74% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 19% 95%;
+    --secondary-foreground: 222 28% 17%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 218 11% 45%;
+    --accent: 239 68% 96%;
+    --accent-foreground: 239 60% 48%;
+    --destructive: 0 72% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 16% 89%;
+    --input: 220 16% 88%;
+    --ring: 239 74% 60%;
+    --chart-grid: #e8eaf0;
+    --chart-axis: #626b7d;
+    --chart-one: #5b5bd6;
+    --chart-two: #0f9f82;
+    --chart-three: #d99b35;
+    --sidebar: #f8f9fb;
+    --sidebar-active: #eff0f8;
+    --overlay: rgb(17 24 39 / 0.38);
+    --radius: 0.65rem;
+  }
+
+  .dark {
+    --background: 222 24% 8%;
+    --foreground: 216 22% 92%;
+    --card: 222 22% 10.5%;
+    --card-foreground: 216 22% 92%;
+    --popover: 222 22% 11%;
+    --popover-foreground: 216 22% 92%;
+    --primary: 238 80% 69%;
+    --primary-foreground: 230 34% 9%;
+    --secondary: 222 18% 14%;
+    --secondary-foreground: 216 18% 89%;
+    --muted: 222 18% 14%;
+    --muted-foreground: 218 11% 60%;
+    --accent: 238 30% 18%;
+    --accent-foreground: 237 84% 78%;
+    --destructive: 0 63% 54%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 16% 18%;
+    --input: 220 16% 20%;
+    --ring: 238 80% 69%;
+    --chart-grid: #292d36;
+    --chart-axis: #9199aa;
+    --chart-one: #8787f7;
+    --chart-two: #3fceb0;
+    --chart-three: #e4ab52;
+    --sidebar: #101218;
+    --sidebar-active: #1a1d27;
+    --overlay: rgb(0 0 0 / 0.62);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    min-height: 100vh;
+    font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+  }
+}
+
+@layer components {
+  .tabular {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .panel {
+    @apply rounded-xl border bg-card text-card-foreground shadow-panel;
+  }
+
+  .eyebrow {
+    @apply text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground;
+  }
+
+  .icon-button {
+    @apply inline-flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground outline-none transition-colors hover:bg-secondary hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-40;
+  }
+
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .custom-scrollbar {
+    scrollbar-color: hsl(var(--border)) transparent;
+    scrollbar-width: thin;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: hsl(var(--border));
+    background-clip: padding-box;
+  }
+
+  .chart-tooltip {
+    @apply rounded-lg border bg-popover px-3 py-2 text-xs text-popover-foreground shadow-xl;
+  }
+
+  .data-skeleton {
+    background-image: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--secondary)) 50%, hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    @apply animate-shimmer rounded-md;
+  }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(16 185 129 / 0.18); }
+  50% { box-shadow: 0 0 0 4px rgb(16 185 129 / 0); }
+}
+
+.live-dot {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+.react-flow__controls {
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  width: 28px !important;
+  height: 28px !important;
+  border-bottom-color: hsl(var(--border)) !important;
+  background: hsl(var(--card)) !important;
+  fill: hsl(var(--foreground)) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: hsl(var(--secondary)) !important;
+}
+
+.react-flow__background pattern circle {
+  fill: hsl(var(--border));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 64px;
+  }
+}
